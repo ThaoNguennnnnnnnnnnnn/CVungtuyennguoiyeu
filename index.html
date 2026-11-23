@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV Ứng Tuyển Vị Trí: Người Yêu Của Chị Em ❤️</title>
+
+  <!-- Google Fonts hỗ trợ tiếng Việt tuyệt đẹp -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Quicksand:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Cấu hình Tailwind cho font và bảng màu Ocean Blue & Soft Rose -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            display: ['"Quicksand"', '"Be Vietnam Pro"', 'sans-serif'],
+          },
+          colors: {
+            ocean: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+            },
+            coral: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Style bổ sung cho hiệu ứng mượt mà và chế độ In / Lưu PDF -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Hiệu ứng nổi nhẹ cho nền trang trí */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-float-slow {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    /* Hiệu ứng xuất hiện cho hộp thoại chúc mừng */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.88) translateY(12px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-pop-in {
+      animation: popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Tối ưu hóa khi người dùng bấm In / Lưu PDF */
+    @media print {
+      body {
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .cv-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-sky-50 via-white to-rose-50 text-slate-700 antialiased selection:bg-rose-200 selection:text-rose-900">
+
+  <!-- Canvas toàn màn hình cho hiệu ứng pháo giấy & trái tim rơi -->
+  <canvas id="celebrationCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+  <!-- Thanh công cụ gọn gàng ở góc trên (In / Lưu PDF) -->
+  <div class="no-print max-w-6xl mx-auto px-4 sm:px-6 pt-5 pb-2 flex items-center justify-between gap-3">
+    <div class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-sky-700 bg-white/80 backdrop-blur border border-sky-100 px-3.5 py-1.5 rounded-full shadow-sm">
+      <span>💌</span>
+      <span>Phiên bản CV Tình Yêu 2026</span>
+    </div>
+
+    <button
+      id="printBtn"
+      type="button"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-sky-50 text-sky-700 font-semibold text-xs sm:text-sm border border-sky-200 shadow-sm hover:shadow transition-all active:scale-95 cursor-pointer"
+      title="In hoặc lưu hồ sơ dưới dạng PDF"
+    >
+      <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z" />
+      </svg>
+      <span>In / Lưu PDF</span>
+    </button>
+  </div>
+
+  <!-- Khung chính của CV -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-14 pt-2">
+    <article class="cv-sheet bg-white/95 backdrop-blur rounded-3xl shadow-xl shadow-sky-900/5 border border-sky-100/80 overflow-hidden">
+
+      <!-- =========================================================
+           PHẦN HEADER NỔI BẬT
+      ========================================================== -->
+      <header class="relative bg-gradient-to-r from-sky-100/80 via-white to-rose-100/75 px-6 sm:px-10 py-8 sm:py-10 border-b border-sky-100">
+        <!-- Họa tiết trang trí mềm mại -->
+        <div class="pointer-events-none absolute -top-10 -right-10 w-44 h-44 rounded-full bg-rose-200/30 blur-2xl"></div>
+        <div class="pointer-events-none absolute -bottom-12 -left-10 w-48 h-48 rounded-full bg-sky-200/35 blur-2xl"></div>
+
+        <div class="relative flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8">
+          <!-- Khung ảnh đại diện hình tròn (Click để tải ảnh cá nhân lên) -->
+          <div class="shrink-0 flex flex-col items-center">
+            <label
+              for="avatarUpload"
+              class="group relative w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1.5 bg-gradient-to-tr from-sky-400 via-rose-300 to-rose-500 shadow-lg shadow-rose-200/60 cursor-pointer transition-transform duration-300 hover:scale-105"
+              title="Nhấn để tải ảnh đại diện của bạn lên"
+            >
+              <div class="w-full h-full rounded-full bg-white overflow-hidden relative flex items-center justify-center">
+                <!-- Ảnh đại diện mặc định (SVG dễ thương) -->
+                <div id="defaultAvatar" class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-sky-50 to-rose-50">
+                  <svg class="w-20 h-20 text-rose-400 animate-float-slow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="40" r="22" fill="#FFE4E6" stroke="#FB7185" stroke-width="3"/>
+                    <circle cx="42" cy="38" r="2.8" fill="#0369A1"/>
+                    <circle cx="58" cy="38" r="2.8" fill="#0369A1"/>
+                    <ellipse cx="36" cy="44" rx="3.5" ry="2" fill="#FDA4AF"/>
+                    <ellipse cx="64" cy="44" rx="3.5" ry="2" fill="#FDA4AF"/>
+                    <path d="M44 46C46.5 49.5 53.5 49.5 56 46" stroke="#E11D48" stroke-width="2.6" stroke-linecap="round"/>
+                    <path d="M24 84C24 69 35 62 50 62C65 62 76 69 76 84" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M50 70C50 70 44 65 44 61.5C44 59.5 45.6 58 47.5 58C48.8 58 49.7 58.7 50 59.6C50.3 58.7 51.2 58 52.5 58C54.4 58 56 59.5 56 61.5C56 65 50 70 50 70Z" fill="#F43F5E"/>
+                  </svg>
+                </div>
+                <!-- Ảnh người dùng tải lên -->
+                <img id="avatarPreview" src="" alt="Ảnh đại diện ứng viên" class="hidden w-full h-full object-cover" />
+                <!-- Lớp phủ gợi ý đổi ảnh khi di chuột -->
+                <div class="no-print absolute inset-0 bg-slate-900/45 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-medium px-2 text-center">
+                  <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                    <circle cx="12" cy="13" r="3"/>
+                  </svg>
+                  <span>Đổi ảnh</span>
+                </div>
+              </div>
+              <!-- Nút camera nhỏ ở góc ảnh -->
+              <span class="no-print absolute bottom-1 right-1 w-8 h-8 rounded-full bg-white text-rose-500 shadow-md border border-rose-100 flex items-center justify-center text-sm group-hover:bg-rose-500 group-hover:text-white transition-colors">
+                📷
+              </span>
+            </label>
+            <input id="avatarUpload" type="file" accept="image/*" class="hidden" />
+            <span class="no-print mt-2 text-[11px] text-slate-400 font-medium">Chạm vào ảnh để tải ảnh của bạn</span>
+          </div>
+
+          <!-- Thông tin tiêu đề CV -->
+          <div class="flex-1 text-center md:text-left">
+            <!-- Nhãn CURRICULUM VITAE & Huy hiệu trạng thái nhấp nháy màu xanh -->
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mb-3">
+              <span class="inline-block px-3.5 py-1 rounded-full bg-sky-600 text-white text-xs font-bold tracking-[0.18em] uppercase shadow-sm">
+                CURRICULUM VITAE
+              </span>
+
+              <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs sm:text-sm font-semibold shadow-sm">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span>🟢 Sẵn sàng nhận việc ngay</span>
+              </span>
+            </div>
+
+            <!-- Tiêu đề chính -->
+            <h1 class="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-800 tracking-tight leading-snug mb-4">
+              HỒ SƠ ỨNG TUYỂN VỊ TRÍ:
+              <span class="bg-gradient-to-r from-sky-600 via-rose-500 to-rose-600 bg-clip-text text-transparent">
+                NGƯỜI YÊU CỦA CHỊ EM ❤️
+              </span>
+            </h1>
+
+            <!-- Hộp trích dẫn nổi bật -->
+            <div class="relative bg-white/90 border-l-4 border-rose-400 rounded-2xl p-4 shadow-sm border border-rose-100/80">
+              <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                <span class="font-bold text-rose-600">Thông điệp tuyển dụng:</span>
+                <span class="italic font-medium text-slate-700">
+                  Tuyển một người, yêu một người, không nhận làm cộng tác viên tình cảm.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- =========================================================
+           BỐ CỤC 2 CỘT TRÊN DESKTOP / 1 CỘT MƯỢT MÀ TRÊN MOBILE
+      ========================================================== -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10">
+
+        <!-- =======================================================
+             CỘT TRÁI (SIDEBAR THÔNG TIN): MỤC 1, MỤC 5, MỤC 6
+        ======================================================== -->
+        <aside class="lg:col-span-5 space-y-8">
+
+          <!-- 1. THÔNG TIN ỨNG VIÊN -->
+          <section class="bg-sky-50/70 rounded-2xl p-5 sm:p-6 border border-sky-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold shadow-sm shadow-sky-200">
+                1
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-sky-900 tracking-tight">
+                THÔNG TIN ỨNG VIÊN
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+              <!-- Giới tính -->
+              <div class="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-sky-100/80 shadow-xs hover:border-rose-200 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-rose-50 text-lg flex items-center justify-center shrink-0">👑</span>
+                <div class="text-sm leading-relaxed">
+                  <p class="text-xs font-bold uppercase tracking-wide text-sky-600">Giới tính</p>
+                  <p class="text-slate-700 font-medium">Nữ chính trong cuộc đời mình.</p>
+                </div>
+              </div>
+
+              <!-- Đối tượng quan tâm -->
+              <div class="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-sky-100/80 shadow-xs hover:border-rose-200 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-rose-50 text-lg flex items-center justify-center shrink-0">💘</span>
+                <div class="text-sm leading-relaxed">
+                  <p class="text-xs font-bold uppercase tracking-wide text-sky-600">Đối tượng quan tâm</p>
+                  <p class="text-slate-700 font-medium">Các chị em phụ nữ xinh đẹp.</p>
+                </div>
+              </div>
+
+              <!-- Tình trạng -->
+              <div class="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-sky-100/80 shadow-xs hover:border-rose-200 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-sky-50 text-lg flex items-center justify-center shrink-0">🏷️</span>
+                <div class="text-sm leading-relaxed">
+                  <p class="text-xs font-bold uppercase tracking-wide text-sky-600">Tình trạng</p>
+                  <p class="text-slate-700 font-medium">Độc thân, chưa có chủ.</p>
+                </div>
+              </div>
+
+              <!-- Mức lương mong muốn -->
+              <div class="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-sky-100/80 shadow-xs hover:border-rose-200 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-rose-50 text-lg flex items-center justify-center shrink-0">💰</span>
+                <div class="text-sm leading-relaxed">
+                  <p class="text-xs font-bold uppercase tracking-wide text-sky-600">Mức lương mong muốn</p>
+                  <p class="text-slate-700 font-medium">Không cần lương, chỉ cần thương.</p>
+                </div>
+              </div>
+
+              <!-- Thời gian làm việc -->
+              <div class="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-sky-100/80 shadow-xs hover:border-rose-200 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-sky-50 text-lg flex items-center justify-center shrink-0">⏰</span>
+                <div class="text-sm leading-relaxed">
+                  <p class="text-xs font-bold uppercase tracking-wide text-sky-600">Thời gian làm việc</p>
+                  <p class="text-slate-700 font-medium">24/7, đặc biệt tăng ca vào ban đêm.</p>
+                </div>
+              </div>
+
+              <!-- Hình thức -->
+              <div class="flex items-start gap-3 bg-white rounded-xl p-3.5 border border-sky-100/80 shadow-xs hover:border-rose-200 transition-colors">
+                <span class="w-9 h-9 rounded-lg bg-rose-50 text-lg flex items-center justify-center shrink-0">✈️</span>
+                <div class="text-sm leading-relaxed">
+                  <p class="text-xs font-bold uppercase tracking-wide text-sky-600">Hình thức</p>
+                  <p class="text-slate-700 font-medium">Yêu xa cũng được, miễn đừng xa lòng.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. CHẾ ĐỘ PHÚC LỢI MONG MUỐN -->
+          <section class="bg-gradient-to-b from-rose-50/70 to-white rounded-2xl p-5 sm:p-6 border border-rose-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center font-bold shadow-sm shadow-rose-200">
+                5
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-rose-900 tracking-tight">
+                CHẾ ĐỘ PHÚC LỢI MONG MUỐN
+              </h2>
+            </div>
+
+            <ul class="space-y-2.5 text-sm">
+              <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-rose-100/70 shadow-xs">
+                <span class="text-rose-500 shrink-0 mt-0.5">❤️</span>
+                <span>Được nắm tay không cần xin giấy phép.</span>
+              </li>
+              <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-rose-100/70 shadow-xs">
+                <span class="text-amber-500 shrink-0 mt-0.5">⭐</span>
+                <span>Được ôm miễn phí, không giới hạn số lần.</span>
+              </li>
+              <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-rose-100/70 shadow-xs">
+                <span class="text-rose-500 shrink-0 mt-0.5">❤️</span>
+                <span>Được hôn khi đủ điều kiện và có sự đồng ý.</span>
+              </li>
+              <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-rose-100/70 shadow-xs">
+                <span class="text-amber-500 shrink-0 mt-0.5">⭐</span>
+                <span>Được nghe kể chuyện trên trời dưới đất.</span>
+              </li>
+              <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-rose-100/70 shadow-xs">
+                <span class="text-rose-500 shrink-0 mt-0.5">❤️</span>
+                <span>Được ưu tiên trong danh sách người thương.</span>
+              </li>
+              <li class="flex items-start gap-3 bg-white p-3 rounded-xl border border-rose-100/70 shadow-xs">
+                <span class="text-amber-500 shrink-0 mt-0.5">⭐</span>
+                <span>Được công khai danh phận, không làm nhân viên thời vụ.</span>
+              </li>
+              <!-- Mục Đặc biệt được làm nổi bật -->
+              <li class="flex items-start gap-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white p-3.5 rounded-xl shadow-md shadow-rose-200/70">
+                <span class="text-lg shrink-0">🌟</span>
+                <span class="font-medium leading-relaxed">
+                  <strong class="underline decoration-rose-200 underline-offset-2">Đặc biệt:</strong>
+                  Không phải chia sẻ người yêu với bất kỳ đối thủ cạnh tranh nào.
+                </span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- 6. ĐIỂM YẾU CỦA ỨNG VIÊN -->
+          <section class="bg-sky-50/50 rounded-2xl p-5 sm:p-6 border border-sky-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold shadow-sm shadow-sky-200">
+                6
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-sky-900 tracking-tight">
+                ĐIỂM YẾU CỦA ỨNG VIÊN
+              </h2>
+            </div>
+
+            <div class="flex flex-wrap gap-2.5">
+              <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white border border-rose-200/80 text-slate-700 text-sm shadow-xs hover:-translate-y-0.5 transition-transform">
+                <span>🥺</span>
+                <span>Dễ mềm lòng trước gái đẹp.</span>
+              </span>
+              <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white border border-sky-200/80 text-slate-700 text-sm shadow-xs hover:-translate-y-0.5 transition-transform">
+                <span>😳</span>
+                <span>Có thể mất khả năng giao tiếp khi crush nhìn thẳng vào mắt.</span>
+              </span>
+              <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white border border-rose-200/80 text-slate-700 text-sm shadow-xs hover:-translate-y-0.5 transition-transform">
+                <span>😊</span>
+                <span>Dễ cười khi được người yêu khen.</span>
+              </span>
+              <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white border border-sky-200/80 text-slate-700 text-sm shadow-xs hover:-translate-y-0.5 transition-transform">
+                <span>🫂</span>
+                <span>Hay nói không sao nhưng thực chất rất cần một cái ôm.</span>
+              </span>
+              <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white border border-rose-200/80 text-slate-700 text-sm shadow-xs hover:-translate-y-0.5 transition-transform">
+                <span>💘</span>
+                <span>Có nguy cơ yêu quá nghiêm túc nếu gặp đúng người.</span>
+              </span>
+            </div>
+          </section>
+        </aside>
+
+        <!-- =======================================================
+             CỘT PHẢI (NỘI DUNG CHÍNH): MỤC 2, MỤC 3, MỤC 4, MỤC 7
+        ======================================================== -->
+        <div class="lg:col-span-7 space-y-8">
+
+          <!-- 2. MỤC TIÊU NGHỀ NGHIỆP -->
+          <section class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-rose-400 text-white flex items-center justify-center font-bold shadow-sm">
+                2
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-slate-800 tracking-tight">
+                MỤC TIÊU NGHỀ NGHIỆP
+              </h2>
+            </div>
+
+            <!-- Đoạn giới thiệu -->
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed bg-sky-50/60 border border-sky-100 rounded-2xl p-4 mb-6">
+              Mong muốn tìm được một cô gái có nhan sắc vừa đủ làm em rung động, tính cách vừa đủ làm em mê, và trái tim vừa đủ chỗ chứa thêm một đứa hơi khùng như em.
+            </p>
+
+            <!-- Định hướng phát triển (Lộ trình / Timeline 6 bước) -->
+            <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-rose-500 mb-4 flex items-center gap-2">
+              <span>🚀</span>
+              <span>Định hướng phát triển:</span>
+            </h3>
+
+            <ol class="relative border-l-2 border-dashed border-rose-200 ml-3.5 space-y-4">
+              <li class="pl-6 relative">
+                <span class="absolute -left-[13px] top-0.5 w-6 h-6 rounded-full bg-sky-100 border-2 border-sky-400 text-sky-700 text-xs font-bold flex items-center justify-center">1</span>
+                <div class="bg-slate-50/80 rounded-xl px-4 py-2.5 border border-slate-100">
+                  <span class="font-bold text-sky-700 text-sm">Giai đoạn 1:</span>
+                  <span class="text-sm text-slate-700"> Người lạ.</span>
+                </div>
+              </li>
+
+              <li class="pl-6 relative">
+                <span class="absolute -left-[13px] top-0.5 w-6 h-6 rounded-full bg-sky-200 border-2 border-sky-500 text-sky-800 text-xs font-bold flex items-center justify-center">2</span>
+                <div class="bg-slate-50/80 rounded-xl px-4 py-2.5 border border-slate-100">
+                  <span class="font-bold text-sky-700 text-sm">Giai đoạn 2:</span>
+                  <span class="text-sm text-slate-700"> Người quen.</span>
+                </div>
+              </li>
+
+              <li class="pl-6 relative">
+                <span class="absolute -left-[13px] top-0.5 w-6 h-6 rounded-full bg-rose-100 border-2 border-rose-400 text-rose-700 text-xs font-bold flex items-center justify-center">3</span>
+                <div class="bg-rose-50/40 rounded-xl px-4 py-2.5 border border-rose-100/80">
+                  <span class="font-bold text-rose-600 text-sm">Giai đoạn 3:</span>
+                  <span class="text-sm text-slate-700"> Người thương.</span>
+                </div>
+              </li>
+
+              <li class="pl-6 relative">
+                <span class="absolute -left-[13px] top-0.5 w-6 h-6 rounded-full bg-rose-200 border-2 border-rose-500 text-rose-800 text-xs font-bold flex items-center justify-center">4</span>
+                <div class="bg-rose-50/60 rounded-xl px-4 py-2.5 border border-rose-100">
+                  <span class="font-bold text-rose-600 text-sm">Giai đoạn 4:</span>
+                  <span class="text-sm text-slate-700"> Người yêu.</span>
+                </div>
+              </li>
+
+              <li class="pl-6 relative">
+                <span class="absolute -left-[13px] top-0.5 w-6 h-6 rounded-full bg-rose-400 border-2 border-rose-500 text-white text-xs font-bold flex items-center justify-center">5</span>
+                <div class="bg-rose-50/80 rounded-xl px-4 py-2.5 border border-rose-200/70">
+                  <span class="font-bold text-rose-700 text-sm">Giai đoạn 5:</span>
+                  <span class="text-sm text-slate-700"> Người nhà.</span>
+                </div>
+              </li>
+
+              <li class="pl-6 relative">
+                <span class="absolute -left-[14px] top-0.5 w-7 h-7 rounded-full bg-gradient-to-tr from-rose-500 to-pink-500 text-white text-xs flex items-center justify-center shadow-md shadow-rose-200">💍</span>
+                <div class="bg-gradient-to-r from-sky-50 to-rose-50 rounded-xl px-4 py-3 border border-rose-200 shadow-xs">
+                  <span class="font-bold text-rose-600 text-sm">Giai đoạn cuối:</span>
+                  <span class="text-sm font-medium text-slate-800"> Không cho nghỉ việc, trừ khi nghỉ hưu cùng nhau.</span>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <!-- 3. KINH NGHIỆM LÀM VIỆC -->
+          <section class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold shadow-sm shadow-sky-200">
+                3
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-slate-800 tracking-tight">
+                KINH NGHIỆM LÀM VIỆC
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div class="flex items-start gap-3 p-4 rounded-2xl bg-sky-50/50 border border-sky-100 hover:shadow-md hover:border-sky-200 transition-all">
+                <span class="text-2xl shrink-0">👀</span>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Có kinh nghiệm nhìn gái đẹp nhưng không dám lại gần.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-2xl bg-rose-50/50 border border-rose-100 hover:shadow-md hover:border-rose-200 transition-all">
+                <span class="text-2xl shrink-0">📱</span>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Thành thạo kỹ năng ngắm ảnh crush 7749 lần.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-2xl bg-sky-50/50 border border-sky-100 hover:shadow-md hover:border-sky-200 transition-all">
+                <span class="text-2xl shrink-0">🌙</span>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Có khả năng thức khuya chờ tin nhắn nhưng sáng hôm sau vẫn giả vờ ngủ ngon.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-2xl bg-rose-50/50 border border-rose-100 hover:shadow-md hover:border-rose-200 transition-all">
+                <span class="text-2xl shrink-0">🧋</span>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Biết đặt đồ ăn, mua trà sữa và làm tài xế riêng.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-2xl bg-sky-50/50 border border-sky-100 hover:shadow-md hover:border-sky-200 transition-all">
+                <span class="text-2xl shrink-0">🤔</span>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Có kinh nghiệm tự suy diễn khi người ta seen mà không rep.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-2xl bg-rose-50/50 border border-rose-100 hover:shadow-md hover:border-rose-200 transition-all">
+                <span class="text-2xl shrink-0">🔥</span>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  Đã từng thất bại trong nhiều cuộc tuyển dụng tình cảm nhưng chưa bao giờ từ bỏ đam mê.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. KỸ NĂNG CHUYÊN MÔN -->
+          <section class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-100 shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center font-bold shadow-sm shadow-rose-200">
+                4
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-slate-800 tracking-tight">
+                KỸ NĂNG CHUYÊN MÔN
+              </h2>
+            </div>
+
+            <!-- Bảng kỹ năng hiện đại kèm thanh tiến trình & badge trình độ -->
+            <div class="overflow-x-auto rounded-2xl border border-slate-100">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-sky-50 text-sky-900 text-xs uppercase tracking-wider">
+                    <th class="py-3 px-4 font-bold">Kỹ năng</th>
+                    <th class="py-3 px-4 font-bold text-right">Trình độ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-sm">
+                  <!-- 1. Chung thủy -->
+                  <tr class="hover:bg-rose-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Chung thủy</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-rose-400 to-rose-600 rounded-full" style="width: 100%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700">100%</span>
+                    </td>
+                  </tr>
+
+                  <!-- 2. Nịnh người yêu -->
+                  <tr class="hover:bg-sky-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Nịnh người yêu</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-sky-400 to-sky-600 rounded-full" style="width: 96%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700">Chuyên gia</span>
+                    </td>
+                  </tr>
+
+                  <!-- 3. Dỗi ngược -->
+                  <tr class="hover:bg-rose-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Dỗi ngược</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-amber-400 to-rose-400 rounded-full" style="width: 88%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Thành thạo</span>
+                    </td>
+                  </tr>
+
+                  <!-- 4. Làm nũng -->
+                  <tr class="hover:bg-sky-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Làm nũng</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-pink-400 to-rose-500 rounded-full" style="width: 95%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-pink-100 text-pink-700">Xuất sắc</span>
+                    </td>
+                  </tr>
+
+                  <!-- 5. Chụp ảnh cho người yêu -->
+                  <tr class="hover:bg-rose-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Chụp ảnh cho người yêu</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-sky-300 to-cyan-400 rounded-full" style="width: 55%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600">Đang học việc</span>
+                    </td>
+                  </tr>
+
+                  <!-- 6. Ghen khi thấy người yêu thân với gái khác -->
+                  <tr class="hover:bg-sky-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Ghen khi thấy người yêu thân với gái khác</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-orange-400 to-rose-400 rounded-full" style="width: 78%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">Có tiềm năng</span>
+                    </td>
+                  </tr>
+
+                  <!-- 7. Nhớ ngày kỷ niệm -->
+                  <tr class="hover:bg-rose-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Nhớ ngày kỷ niệm</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full" style="width: 98%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700">Không cần nhắc</span>
+                    </td>
+                  </tr>
+
+                  <!-- 8. Hết tiền nhưng vẫn muốn mua trà sữa -->
+                  <tr class="hover:bg-sky-50/30 transition-colors">
+                    <td class="py-3.5 px-4">
+                      <div class="font-medium text-slate-800 mb-1.5">Hết tiền nhưng vẫn muốn mua trà sữa</div>
+                      <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full" style="width: 94%"></div>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-right align-middle whitespace-nowrap">
+                      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">Chuyên nghiệp</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 7. LỜI NHẮN GỬI NHÀ TUYỂN DỤNG -->
+          <section class="relative bg-gradient-to-br from-rose-50/80 via-white to-sky-50/80 rounded-2xl p-6 sm:p-7 border border-rose-200/70 shadow-sm">
+            <!-- Con dấu lá thư trang trí -->
+            <div class="hidden sm:flex absolute top-5 right-6 w-12 h-12 rounded-2xl bg-rose-100/80 text-rose-500 items-center justify-center text-2xl rotate-6 border border-rose-200">
+              💌
+            </div>
+
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 text-white flex items-center justify-center font-bold shadow-sm shadow-rose-200">
+                7
+              </div>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-slate-800 tracking-tight">
+                LỜI NHẮN GỬI NHÀ TUYỂN DỤNG
+              </h2>
+            </div>
+
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-700 leading-relaxed bg-white/85 rounded-2xl p-5 sm:p-6 border border-rose-100 shadow-xs">
+              <p class="font-bold text-rose-600 text-base sm:text-lg">Kính gửi chị đẹp!</p>
+
+              <p>
+                Em biết ngoài kia có rất nhiều ứng viên sáng giá, có người đẹp hơn em, giàu hơn em, giỏi hơn em và biết thả thính chuyên nghiệp hơn em.
+              </p>
+
+              <p>
+                Nhưng em tin rằng em có một lợi thế cạnh tranh rất lớn: Em đang thất nghiệp trong lĩnh vực tình cảm và có thể nhận việc ngay lập tức.
+              </p>
+
+              <p>
+                Em không hứa sẽ biến chị thành công chúa, nhưng em hứa sẽ không để chị phải một mình ăn hết phần khoai tây chiên.
+              </p>
+
+              <p>
+                Nếu chị thấy hồ sơ phù hợp, xin vui lòng phản hồi trong vòng 24 giờ. Quá thời hạn, ứng viên vẫn tiếp tục chờ vì hiện tại chưa có công ty nào nhận.
+              </p>
+
+              <div class="pt-3 border-t border-dashed border-rose-200">
+                <p class="font-bold text-sky-800">Trân trọng!</p>
+                <p class="italic text-slate-600 mt-1">
+                  Ứng viên đang độc thân, có nhu cầu được tuyển dụng và sẵn sàng ký hợp đồng tình yêu không thời hạn. ❤️
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- =========================================================
+           KHU VỰC TƯƠNG TÁC: QUYẾT ĐỊNH CỦA NHÀ TUYỂN DỤNG
+      ========================================================== -->
+      <section class="no-print border-t border-sky-100 bg-gradient-to-r from-sky-50/90 via-white to-rose-50/90 px-6 sm:px-10 py-8 sm:py-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-rose-100 text-rose-600 text-xs font-bold uppercase tracking-wider mb-3">
+            Vòng Phỏng Vấn Cuối Cùng
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-800 mb-2">
+            Quyết định của Nhà tuyển dụng
+          </h2>
+          <p class="text-sm sm:text-base text-slate-500 mb-6">
+            Chị đẹp đã xem hết hồ sơ rồi, giờ là lúc đưa ra quyết định quan trọng nhất hôm nay nha! ✨
+          </p>
+
+          <!-- Khu vực chứa 2 nút (đủ không gian để nút phụ chạy trốn mượt mà) -->
+          <div
+            id="decisionArena"
+            class="relative min-h-[150px] sm:min-h-[130px] w-full rounded-2xl bg-white/70 border border-dashed border-sky-200 p-5 flex flex-col sm:flex-row items-center justify-center gap-4 overflow-hidden"
+          >
+            <!-- Nút chính: Duyệt hồ sơ & Chốt đơn ❤️ -->
+            <button
+              id="approveBtn"
+              type="button"
+              class="z-10 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-rose-300/60 hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
+            >
+              Duyệt hồ sơ &amp; Chốt đơn ❤️
+            </button>
+
+            <!-- Nút phụ tinh nghịch chạy trốn -->
+            <button
+              id="rejectBtn"
+              type="button"
+              class="z-10 px-5 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs sm:text-sm border border-slate-200 shadow-sm transition-all duration-200 cursor-pointer select-none"
+            >
+              Để suy nghĩ thêm / Từ chối
+            </button>
+          </div>
+
+          <p id="teaseHint" class="mt-3 text-xs sm:text-sm text-rose-500 font-medium min-h-[20px]"></p>
+        </div>
+      </section>
+    </article>
+
+    <!-- Chân trang nhỏ gọn -->
+    <footer class="no-print text-center mt-6 text-xs text-slate-400">
+      Được thiết kế bằng cả trái tim dành riêng cho chị đẹp ❤️
+    </footer>
+  </main>
+
+  <!-- =========================================================
+       HỘP THOẠI CHÚC MỪNG (THAY THẾ HOÀN TOÀN ALERT)
+  ========================================================== -->
+  <div
+    id="celebrationModal"
+    class="fixed inset-0 z-40 hidden items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <div class="animate-pop-in relative w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 text-center shadow-2xl border border-rose-100">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-rose-500 to-pink-400 text-white text-3xl flex items-center justify-center shadow-lg shadow-rose-200">
+        💍
+      </div>
+
+      <h3 id="modalTitle" class="font-display text-2xl font-extrabold text-slate-800 mb-3">
+        Chốt đơn thành công! 🎉
+      </h3>
+
+      <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+        Hợp đồng tình yêu không thời hạn đã được kích hoạt! Chị đẹp nhớ nhắn tin báo lịch hẹn đầu tiên nha!
+      </p>
+
+      <div class="bg-rose-50 border border-rose-100 rounded-2xl p-3.5 mb-6 text-xs sm:text-sm text-rose-700 font-medium">
+        📌 Trạng thái mới: <span class="font-bold">Đã có chủ (Độc quyền 100%) ❤️</span>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <!-- Nút mở Google Form trực tiếp (dự phòng khi trình duyệt chặn pop-up) -->
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScklnqdERFQQDHnxhmmzTHm1xTx6p0yU8eY9-s_hVwChf9LmA/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full inline-flex items-center justify-center py-3 px-6 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-sm sm:text-base shadow-md shadow-rose-200 hover:shadow-lg active:scale-95 transition-all"
+        >
+          Điền Form Chốt Đơn Ngay ❤️
+        </a>
+
+        <button
+          id="closeModalBtn"
+          type="button"
+          class="w-full py-2.5 px-6 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold text-xs sm:text-sm transition-all cursor-pointer"
+        >
+          Đóng thông báo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT: TẢI ẢNH, IN PDF, NÚT CHẠY TRỐN & PHÁO GIẤY
+  ========================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* -------------------------------------------------------
+         1. Tải ảnh đại diện cá nhân từ máy người dùng
+      ------------------------------------------------------- */
+      const avatarUpload = document.getElementById('avatarUpload');
+      const avatarPreview = document.getElementById('avatarPreview');
+      const defaultAvatar = document.getElementById('defaultAvatar');
+
+      avatarUpload.addEventListener('change', function (event) {
+        try {
+          const file = event.target.files && event.target.files[0];
+          if (!file || !file.type.startsWith('image/')) return;
+
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            avatarPreview.src = e.target.result;
+            avatarPreview.classList.remove('hidden');
+            defaultAvatar.classList.add('hidden');
+          };
+          reader.readAsDataURL(file);
+        } catch (err) {
+          console.error('Lỗi khi tải ảnh đại diện:', err);
+        }
+      });
+
+      /* -------------------------------------------------------
+         2. Nút In / Lưu PDF
+      ------------------------------------------------------- */
+      const printBtn = document.getElementById('printBtn');
+      printBtn.addEventListener('click', function () {
+        window.print();
+      });
+
+      /* -------------------------------------------------------
+         3. Nút phụ tinh nghịch chạy trốn & đổi chữ hài hước
+      ------------------------------------------------------- */
+      const arena = document.getElementById('decisionArena');
+      const rejectBtn = document.getElementById('rejectBtn');
+      const teaseHint = document.getElementById('teaseHint');
+
+      const funnyMessages = [
+        'Đừng bấm nút này mà 🥺',
+        'Hồ sơ chất lượng vậy sao nỡ!',
+        'Bấm nút bên kia đi chị đẹp ơi!',
+      ];
+      let dodgeCount = 0;
+
+      function dodgeRejectButton(e) {
+        if (e && e.type === 'touchstart') {
+          e.preventDefault();
+        }
+
+        // Đổi chữ hài hước luân phiên
+        const msg = funnyMessages[dodgeCount % funnyMessages.length];
+        rejectBtn.textContent = msg;
+        dodgeCount++;
+
+        teaseHint.textContent =
+          dodgeCount >= 3
+            ? 'Nút từ chối này bị lỗi rồi chị đẹp ơi, chỉ bấm được nút màu hồng thôi nha 🤭'
+            : 'Ối, nút chạy mất tiêu rồi! 😆';
+
+        // Đặt nút sang vị trí tuyệt đối trong khung decisionArena
+        rejectBtn.style.position = 'absolute';
+
+        const arenaRect = arena.getBoundingClientRect();
+        const btnRect = rejectBtn.getBoundingClientRect();
+
+        const padding = 12;
+        const maxX = Math.max(padding, arenaRect.width - btnRect.width - padding);
+        const maxY = Math.max(padding, arenaRect.height - btnRect.height - padding);
+
+        const randomX = Math.floor(Math.random() * (maxX - padding + 1)) + padding;
+        const randomY = Math.floor(Math.random() * (maxY - padding + 1)) + padding;
+
+        rejectBtn.style.left = randomX + 'px';
+        rejectBtn.style.top = randomY + 'px';
+      }
+
+      rejectBtn.addEventListener('mouseenter', dodgeRejectButton);
+      rejectBtn.addEventListener('touchstart', dodgeRejectButton, { passive: false });
+      rejectBtn.addEventListener('click', dodgeRejectButton);
+
+      /* -------------------------------------------------------
+         4. Hiệu ứng pháo giấy & trái tim rơi trên Canvas
+      ------------------------------------------------------- */
+      const canvas = document.getElementById('celebrationCanvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationFrameId = null;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const palette = ['#f43f5e', '#fb7185', '#0ea5e9', '#38bdf8', '#f59e0b', '#ec4899', '#10b981'];
+
+      function createParticles(count) {
+        const cx = canvas.width / 2;
+        const cy = canvas.height * 0.45;
+
+        for (let i = 0; i < count; i++) {
+          const isHeart = Math.random() < 0.45;
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 3 + Math.random() * 9;
+
+          particles.push({
+            x: cx + (Math.random() - 0.5) * 160,
+            y: cy + (Math.random() - 0.5) * 80,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 4,
+            gravity: 0.16 + Math.random() * 0.08,
+            size: isHeart ? 12 + Math.random() * 10 : 6 + Math.random() * 6,
+            rotation: Math.random() * Math.PI * 2,
+            rotationSpeed: (Math.random() - 0.5) * 0.18,
+            color: palette[Math.floor(Math.random() * palette.length)],
+            isHeart: isHeart,
+            opacity: 1,
+          });
+        }
+      }
+
+      function drawHeart(x, y, size, rotation, color, opacity) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        const topCurveHeight = size * 0.3;
+        ctx.moveTo(0, topCurveHeight);
+        ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+        ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.2, 0, size);
+        ctx.bezierCurveTo(0, (size + topCurveHeight) / 1.2, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+        ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += p.gravity;
+          p.rotation += p.rotationSpeed;
+
+          if (p.y > canvas.height * 0.75) {
+            p.opacity -= 0.02;
+          }
+
+          if (p.opacity <= 0 || p.y > canvas.height + 40) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          if (p.isHeart) {
+            drawHeart(p.x, p.y, p.size, p.rotation, p.color, p.opacity);
+          } else {
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.globalAlpha = p.opacity;
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+            ctx.restore();
+          }
+        }
+
+        if (particles.length > 0) {
+          animationFrameId = requestAnimationFrame(animateParticles);
+        } else {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      }
+
+      function launchCelebration() {
+        createParticles(110);
+        if (!animationFrameId) {
+          animateParticles();
+        }
+      }
+
+      /* -------------------------------------------------------
+         5. Xử lý nút Duyệt hồ sơ & Hộp thoại chúc mừng
+      ------------------------------------------------------- */
+      const GOOGLE_FORM_URL =
+        'https://docs.google.com/forms/d/e/1FAIpQLScklnqdERFQQDHnxhmmzTHm1xTx6p0yU8eY9-s_hVwChf9LmA/viewform';
+      const approveBtn = document.getElementById('approveBtn');
+      const celebrationModal = document.getElementById('celebrationModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+
+      approveBtn.addEventListener('click', function () {
+        // Lập tức mở đường link Google Form trong tab mới
+        window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
+
+        launchCelebration();
+        setTimeout(function () {
+          createParticles(70);
+        }, 350);
+
+        celebrationModal.classList.remove('hidden');
+        celebrationModal.classList.add('flex');
+      });
+
+      function closeModal() {
+        celebrationModal.classList.add('hidden');
+        celebrationModal.classList.remove('flex');
+      }
+
+      closeModalBtn.addEventListener('click', closeModal);
+      celebrationModal.addEventListener('click', function (e) {
+        if (e.target === celebrationModal) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
